@@ -22,7 +22,7 @@ app.get('/',  async (req, res) => {
         for(row of res.rows) {
             let obj =   {
                             'id': row.id,
-                            'title': row.id,
+                            'title': row.title,
                             'description': row.description,
                             'price': row.price,
                             'imgUrl': `${row.imgurl}`,
