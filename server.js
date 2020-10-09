@@ -25,7 +25,7 @@ app.get('/',  async (req, res) => {
                             'title': row.id,
                             'description': row.description,
                             'price': row.price,
-                            'imgUrl': row.imgUrl,
+                            'imgUrl': `${row.imgurl}`,
             };
             data.push(obj);
         }
