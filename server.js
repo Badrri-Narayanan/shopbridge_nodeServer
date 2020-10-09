@@ -27,7 +27,7 @@ app.get('/',  async (req, res) => {
                             'price': row.price,
                             'imgUrl': row.imgUrl,
             };
-            menu.push(obj);
+            data.push(obj);
         }
     } catch(e) {
         console.error(e.stack);
