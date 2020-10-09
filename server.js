@@ -18,7 +18,7 @@ app.get('/',  async (req, res) => {
     client.connect();
     try {
         data = [];
-        const res = await client.query("select * from products");
+        const res = await client.query("SELECT * FROM products;");
         for(row of res.rows) {
             let obj =   {
                             'id': row.id,
