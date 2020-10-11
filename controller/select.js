@@ -4,6 +4,7 @@ const getProductList = async (client, req, res) => {
         data = await queryDatabaseForProducts(client, data);
     } catch(e) {
         console.error(e.stack);
+        return res.status(400).json("error");
     }
     res.status(200).json(data);
 }

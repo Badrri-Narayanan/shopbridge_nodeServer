@@ -6,13 +6,14 @@ const updateProduct = async (client, req, res) => {
     let price = req.body.price;
     let imgurl = req.body.imgurl;
     if(!req.body.title) {
-        return res.status(400).send('Invalid details');
+        return res.status(400).json('Invalid_details');
     }
     let data = [];
     try {
         data = await select.queryDatabaseForProducts(client, data);
     } catch(e) {
         console.error(e.stack);
+        return res.status(400).json("error");
     }
 
     let flag = false;
@@ -42,13 +43,14 @@ const updateProduct = async (client, req, res) => {
                 `);
             } catch(e) {
                 console.error(e.stack);
+                return res.status(400).json("error");
             }       
         }
     }
     if(flag) {
-        res.status(200).send("ok");
+        res.status(200).json("ok");
     } else {
-        res.status(400).send("product_not_found");
+        res.status(400).json("failed");
     }
 }
 

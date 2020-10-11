@@ -3,7 +3,7 @@ const select = require('./select');
 const insertProduct = async (client, req, res) => {
     const {title, description, price, imgurl} = req.body;
     if(!title || !description || !price || !imgurl) {
-        return res.status(400).send('Invalid details');
+        return res.status(400).json('invalid_details');
     }
     let data = [];
     try {
@@ -13,7 +13,7 @@ const insertProduct = async (client, req, res) => {
     }
     for(obj of data) {
         if(obj.title == title) {
-            return res.status(400).send("Already_present");
+            return res.status(400).json("Already_present");
         }
     }
     try {
@@ -23,9 +23,10 @@ const insertProduct = async (client, req, res) => {
         );
     } catch(e) {
         console.error(e.stack);
+        return res.status(400).json("error");
     }
 
-    res.status(200).send("Added!");
+    res.status(200).json("added");
 }
 
 module.exports = {
