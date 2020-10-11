@@ -12,11 +12,12 @@ app.use(express.json());
 let data = [];
 
 const client = new pg.Client({
-    connectionString : process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false,
-    },
-});
+    user: 'postgres',
+    host: 'localhost',
+    database: 'shop_bridge_store',
+    password: 'password123',
+    port: 5432,
+})
 
 client.connect();
 
@@ -26,7 +27,6 @@ app.post('/', (req, res) => insert.insertProduct(client, req, res));
 
 app.put('/', (req, res) => update.updateProduct(client, req, res));
 
- 
-app.listen(process.env.PORT, () => {
-    console.log("Server is online and running at port " + process.env.PORT)
+app.listen(5000, () => {
+    console.log("Server is online and running at port " + 5000)
 });
